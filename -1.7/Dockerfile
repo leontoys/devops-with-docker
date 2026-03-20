@@ -8,7 +8,10 @@ WORKDIR /usr/src/app
 COPY hello.sh . 
 
 #make it exeutable-optional- if we haven't already done
-RUN chmod +x hello.sh 
+#RUN chmod +x hello.sh 
+
+#execute a command with "/bin/sh -c" prefix
+RUN touch additional.txt
 
 #when running docker, run the below commands
 CMD ["./hello.sh"]
