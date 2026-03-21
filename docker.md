@@ -1,4 +1,11 @@
 # Docker
+- Platform as a Service that delivers s/w in packages ( containers ) with o/s level virtualization
+- VMs virtualize machines
+- Dockerfile - instructions to build images looks like - FROM ubuntu CMD
+- Image - recipe and ingredentials. This never changes. This inturn is made from Dockerfile
+- Containers - ready to eat meal 
+
+
 ## most used commands
 command	explain	shorthand
 docker image ls	Lists all images	docker images
