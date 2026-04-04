@@ -1,9 +1,23 @@
 # Docker
+- Devops means Ops ( ie, release, config, monitoring) of s/w is in the hands of Dev
 - Platform as a Service that delivers s/w in packages ( containers ) with o/s level virtualization
-- VMs virtualize machines
-- Dockerfile - instructions to build images looks like - FROM ubuntu CMD
+- Docker solves the following problems : 
+    - works in my m/c. 
+    - isolated env - if we have 5 apps running on the server with python 3 and we have a new s/w that needs 2.7
+    - development speed up - instead of a new dev to install all dependencies, they can just pull the container and start working
+    - scaling - Container orchestration can spin up new contianers if required
+- VMs virtualize machines - have separate o/s, heavy 
+- Dockerfile - instructions to build images looks like
+    FROM <image>:<tag>
+    RUN <install some dependencies>
+    CMD <command that is executed on `docker container run`>
 - Image - recipe and ingredentials. This never changes. This inturn is made from Dockerfile
 - Containers - ready to eat meal 
+- Docker Engine
+    - CLI client
+    - REST API
+    - Docker daemon
+    ie, when we run a docker command, the CLI client - sends the command to docker daeomon via REST API
 
 
 ## most used commands
@@ -16,6 +30,10 @@ docker container run <image>	Runs a container from an image	docker run
 docker container rm <container>	Removes a container	docker rm
 docker container stop <container>	Stops a container	docker stop
 docker container exec <container>	Executes a command inside the container 	docker exec
+
+# flags
+-d -> detached mode ie, it runs in the background
+- 
 
 ## Running script
 docker run -d -it --name looper ubuntu sh -c 'while true; do date; sleep 1; done'
