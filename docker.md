@@ -58,3 +58,19 @@ docker pull ubuntu:25.10
 - Images are made of layers
 - All instructions in a Dockerfile except CMD are executed during build time. CMD is executed when we call docker run.
 
+# ENTRYPOINT vs CMD can be confusing 
+- In an image, such as our yt-dlp, the command represents an argument list for the entrypoint. 
+- By default, the entrypoint in Docker is set as /bin/sh -c -> starts the shell
+- This is passed if no entrypoint is set. 
+- This is why giving the path to a script file as CMD works : you're giving the file as a parameter to /bin/sh -c.
+- If an image defines both, then the CMD is used to give default arguments (opens in a new tab) to the entrypoint.
+- There are two ways to set the ENTRYPOINT and CMD: exec form and shell form. We have been using the exec form, in which the command itself is executed. The exec form is generally preferred over the shell form, because in the shell form the command that is executed is wrapped with /bin/sh -c, which can result in unexpected behaviour.
+- Dockerfile	Resulting command
+- ENTRYPOINT /bin/ping -c 3
+CMD localhost	/bin/sh -c -> '/bin/ping -c 3' /bin/sh -c localhost
+- ENTRYPOINT ["/bin/ping","-c","3"]
+CMD localhost	-> /bin/ping -c 3 /bin/sh -c localhost
+- ENTRYPOINT /bin/ping -c 3
+CMD ["localhost"]	-> /bin/sh -c '/bin/ping -c 3' localhost
+- ENTRYPOINT ["/bin/ping","-c","3"]
+CMD ["localhost"]	-> /bin/ping -c 3 localhost
