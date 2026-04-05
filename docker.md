@@ -18,6 +18,7 @@
     - REST API
     - Docker daemon
     ie, when we run a docker command, the CLI client - sends the command to docker daeomon via REST API
+- TTY is shorthand for Teletypewriter.when we launch terminal we interact with the virtual TTY in linux
 
 
 ## most used commands
@@ -31,9 +32,16 @@ docker container rm <container>	Removes a container	docker rm
 docker container stop <container>	Stops a container	docker stop
 docker container exec <container>	Executes a command inside the container 	docker exec
 
-# flags
+# other commands and flags
 -d -> detached mode ie, it runs in the background
-- 
+-t -> tty to interact with the docker container
+-i -> interactive, for standard input stream
+-f -> logs -f for output logs
+- attach - to attach to the container from another terminal
+- exec - go inside and run commands
+-rm -> to remove
+
+
 
 ## Running script
 docker run -d -it --name looper ubuntu sh -c 'while true; do date; sleep 1; done'
@@ -46,4 +54,6 @@ docker pull quay.io/podman/hello
 - we can pull a specific version or tag like below. if we omit that, it will pull the latest
 docker pull ubuntu:25.10
 - registry/organisation/image:tag
+- we build an app, then containarize -> we are creating images
+- Images are made of layers
 
