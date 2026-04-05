@@ -8,45 +8,45 @@
     - scaling - Container orchestration can spin up new contianers if required
 - VMs virtualize machines - have separate o/s, heavy 
 - Dockerfile - instructions to build images looks like
-    FROM <image>:<tag>
-    RUN <install some dependencies>
-    CMD <command that is executed on `docker container run`>
+    - FROM < image>:< tag>
+    - RUN < install some dependencies>
+    - CMD < command that is executed on `docker container run`>
 - Image - recipe and ingredentials. This never changes. This inturn is made from Dockerfile
 - Containers - ready to eat meal 
 - Docker Engine
     - CLI client
     - REST API
     - Docker daemon
-    ie, when we run a docker command, the CLI client - sends the command to docker daeomon via REST API
+    - ie, when we run a docker command, the CLI client - sends the command to docker daeomon via REST API
 - TTY is shorthand for Teletypewriter.when we launch terminal we interact with the virtual TTY in linux
 
 
 ## most used commands
 command	explain	shorthand
-docker image ls	Lists all images	docker images
-docker image rm <image>	Removes an image	docker rmi
-docker image pull <image>	Pulls image from a docker registry	docker pull
-docker container ls -a	Lists all containers	docker ps -a
-docker container run <image>	Runs a container from an image	docker run
-docker container rm <container>	Removes a container	docker rm
-docker container stop <container>	Stops a container	docker stop
-docker container exec <container>	Executes a command inside the container 	docker exec
+- docker image ls	Lists all images	docker images
+- docker image rm <image>	Removes an image	docker rmi
+- docker image pull <image>	Pulls image from a docker registry	docker pull
+- docker container ls -a	Lists all containers	docker ps -a
+- docker container run <image>	Runs a container from an image	docker run
+- docker container rm <container>	Removes a container	docker rm
+- docker container stop <container>	Stops a container	docker stop
+- docker container exec <container>	Executes a command inside the container 	docker exec
 
 # other commands and flags
--d -> detached mode ie, it runs in the background
--t -> tty to interact with the docker container
--i -> interactive, for standard input stream
--f -> logs -f for output logs
+- d -> detached mode ie, it runs in the background
+- t -> tty to interact with the docker container
+- i -> interactive, for standard input stream
+- f -> logs -f for output logs
 - attach - to attach to the container from another terminal
 - exec - go inside and run commands
--rm -> to remove
+- rm -> to remove
 
 
 
 ## Running script
-docker run -d -it --name looper ubuntu sh -c 'while true; do date; sleep 1; done'
-docker exec looper ls -la
-docker exec -it looper bash
+- docker run -d -it --name looper ubuntu sh -c 'while true; do date; sleep 1; done'
+- docker exec looper ls -la
+- docker exec -it looper bash
 
 ## Images
 - we can pull from other registries like below. if we omit that, it will pull from default docker hub
@@ -56,4 +56,5 @@ docker pull ubuntu:25.10
 - registry/organisation/image:tag
 - we build an app, then containarize -> we are creating images
 - Images are made of layers
+- All instructions in a Dockerfile except CMD are executed during build time. CMD is executed when we call docker run.
 
