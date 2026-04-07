@@ -42,7 +42,6 @@ command	explain	shorthand
 - rm -> to remove
 
 
-
 ## Running script
 - docker run -d -it --name looper ubuntu sh -c 'while true; do date; sleep 1; done'
 - docker exec looper ls -la
@@ -74,3 +73,9 @@ CMD localhost	-> /bin/ping -c 3 /bin/sh -c localhost
 CMD ["localhost"]	-> /bin/sh -c '/bin/ping -c 3' localhost
 - ENTRYPOINT ["/bin/ping","-c","3"]
 CMD ["localhost"]	-> /bin/ping -c 3 localhost
+
+# Ports
+- docker run -p 3456:8080 web-server 
+- This maps the port 3456 on local machine to 8080 on the container
+- To expose a port, add the line EXPOSE <port> in your Dockerfile
+- To publish a port, run the container with -p <host-port>:<container-port>
