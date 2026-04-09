@@ -25,7 +25,8 @@ RUN npm install
 COPY . . 
 
 # First, you need to build the static files with npm run build
-RUN npm run build 
+#RUN npm run build 
+RUN REACT_APP_BACKEND_URL=http://localhost:8080/ npm run build
 
 # Use npm package called serve to serve the project in port 5001:
 RUN npm install -g serve
