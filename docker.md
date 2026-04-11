@@ -1,12 +1,14 @@
 # Docker
 - Devops means Ops ( ie, release, config, monitoring) of s/w is in the hands of Dev
 - Platform as a Service that delivers s/w in packages ( containers ) with o/s level virtualization
+- Think of it like a lunchbox: everything you need is inside, ready to go anywhere
 - Docker solves the following problems : 
     - works in my m/c. 
     - isolated env - if we have 5 apps running on the server with python 3 and we have a new s/w that needs 2.7
     - development speed up - instead of a new dev to install all dependencies, they can just pull the container and start working
     - scaling - Container orchestration can spin up new contianers if required
 - VMs virtualize machines - have separate o/s, heavy 
+- Simple analogy: VMs are like buying separate houses for each family. Containers are like apartments in the same building — shared infrastructure, but private spaces.
 - Dockerfile - instructions to build images looks like
     - FROM < image>:< tag>
     - RUN < install some dependencies>
@@ -34,8 +36,8 @@ command	explain	shorthand
 
 # other commands and flags
 - d -> detached mode ie, it runs in the background
-- t -> tty to interact with the docker container
-- i -> interactive, for standard input stream
+- i -> Keep the connection open (interactive).
+- t -> Give you a proper terminal (TTY) to type in.
 - f -> logs -f for output logs
 - attach - to attach to the container from another terminal
 - exec - go inside and run commands
@@ -74,8 +76,25 @@ CMD ["localhost"]	-> /bin/sh -c '/bin/ping -c 3' localhost
 - ENTRYPOINT ["/bin/ping","-c","3"]
 CMD ["localhost"]	-> /bin/ping -c 3 localhost
 
+# How to build a Dockerfile?
+-    Start a temporary, interactive container (like a test kitchen).
+-    Install things, run commands, break things, fix them.
+-    Once it works perfectly, copy those exact steps into your Dockerfile.
+- docker build -t yt-dlp .
+- docker run yt-dlp
+
+# Volume - Build mounts
+- Docker gives us a flag: -v (for volume). This flag lets us say: "Connect this folder on the left side which is on my computer to the one on the right side the container."
+
+
 # Ports
 - docker run -p 3456:8080 web-server 
 - This maps the port 3456 on local machine to 8080 on the container
 - To expose a port, add the line EXPOSE <port> in your Dockerfile
 - To publish a port, run the container with -p <host-port>:<container-port>
+
+# To publish
+- $ docker login
+- Next, you will need to rename the image to include your username, and then you can push it:
+- $ docker tag yt-dlp <username>/<repository>
+- $ docker push <username>/<repository>
