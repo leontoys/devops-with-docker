@@ -1,0 +1,7 @@
+services:
+  yt-dlp-ubuntu:
+    image: svliyon/youtube-dl-leon
+    build: .
+    volumes:
+      - .:/mydir
+    container_name: yt-dlp

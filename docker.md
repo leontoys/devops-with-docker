@@ -98,3 +98,10 @@ CMD ["localhost"]	-> /bin/ping -c 3 localhost
 - Next, you will need to rename the image to include your username, and then you can push it:
 - $ docker tag yt-dlp <username>/<repository>
 - $ docker push <username>/<repository>
+
+# Docker Compose 
+- tool to simplify multi step docker workflows
+- $ docker compose up - to start all services defined docker-compose.yaml
+- $ docker compose down - to stop and remove the running services
+- $ docker compose logs - to monitor the logs
+- $ docker compose ps - to list all running services
