@@ -1,0 +1,11 @@
+services:
+  backend:
+    image : backend-project
+    ports:
+      - 8080:8080
+    environment:
+      - REQUEST_ORIGIN=http://localhost:5001
+  frontend:
+    image : frontend-project
+    ports:
+      - 5001:5001

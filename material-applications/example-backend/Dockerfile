@@ -11,7 +11,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 #Run go build. It will generate a binary named "server"
-ENV REQUEST_ORIGIN=http://localhost:5001
+#ENV REQUEST_ORIGIN=http://localhost:5001
 RUN go build
 
 #Execute the file e.g. ./server.
