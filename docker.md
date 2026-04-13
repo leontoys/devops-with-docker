@@ -100,8 +100,51 @@ CMD ["localhost"]	-> /bin/ping -c 3 localhost
 - $ docker push <username>/<repository>
 
 # Docker Compose 
-- tool to simplify multi step docker workflows
+- tool to simplify multi step docker workflows, for orchestration
 - $ docker compose up - to start all services defined docker-compose.yaml
 - $ docker compose down - to stop and remove the running services
 - $ docker compose logs - to monitor the logs
 - $ docker compose ps - to list all running services
+- docker-compose.yaml - one file all services 
+
+# Docker Networking
+- how does frontend know the backend? how backend knows the d/b? when we do docker-compose? this is how
+- when we do docker compose up it starts a network project_default with the services and sets up internal DNS server
+- Inside this DNS network, every service name becomes a hostname, backend can reach db via http://db:someport and frontend can reach backend via http://backend:someport . No ip address or mapping needed
+- dynamic - if db crashes and restarts no need to make changes to read from the new ip we access via service name
+- security - its a private club, so no need to open the port to the outside world
+- scaling while doing docker compose if we need additional ports
+- manual network
+- services:
+  db:
+    image: postgres:18.1-alpine
+    networks:
+      - database-network <em># Name in this Docker Compose file</em>
+
+networks:
+  database-network: <em># Name in this Docker Compose file</em>
+    name: the-database-network <em># Name that will be the actual name of the network</em>
+
+services:
+  db:
+    image: backend-image
+    networks:
+      - database-network
+
+networks:
+  database-network:
+    external:
+      name: the-database-network <em># Must match the actual name of the network</em>
+
+
+# Scaling
+- earlier in whoami we had ports mapped as 8000:8000 which means container will map to 8000 of host. so if we start say 3 instance then all will try to access 8000 and it will fail
+- $ docker compose up --scale whoami=3
+- so we only keep the ports as 8000, so it randomly allocates ports in host machine
+- in server environment we will have a load balancer for example jwilder/nginx-proxy
+- we also mount socket that is used to communicate with docker daemon as below
+  - proxy:
+    - image: jwilder/nginx-proxy
+    - volumes:
+      - - /var/run/docker.sock:/tmp/docker.sock:ro
+- 
