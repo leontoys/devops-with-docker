@@ -147,4 +147,4 @@ networks:
     - image: jwilder/nginx-proxy
     - volumes:
       - - /var/run/docker.sock:/tmp/docker.sock:ro
-- 
+- we can also use something like colasloth so that instead of random port numbers we can use subdomains
