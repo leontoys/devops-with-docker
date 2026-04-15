@@ -148,3 +148,4 @@ networks:
     - volumes:
       - - /var/run/docker.sock:/tmp/docker.sock:ro
 - we can also use something like colasloth so that instead of random port numbers we can use subdomains
+- ex 2.5 worked with disabling https only mode in firefox
