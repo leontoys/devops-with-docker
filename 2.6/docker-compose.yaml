@@ -8,7 +8,12 @@ services:
     environment:
       - REQUEST_ORIGIN=http://localhost:5001
       - REDIS_HOST=redis
-      - POSTGRES_HOST=db_redmine
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DATABASE=postgres
+    depends_on:
+      - db
   frontend:
     image : frontend-project
     ports:
@@ -17,5 +22,4 @@ services:
     image: postgres:18
     restart: unless-stopped
     environment:
-      POSTGRES_PASSWORD: example
-    container_name: db_redmine
+      POSTGRES_PASSWORD: postgres
