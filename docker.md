@@ -149,3 +149,32 @@ networks:
       - - /var/run/docker.sock:/tmp/docker.sock:ro
 - we can also use something like colasloth so that instead of random port numbers we can use subdomains
 - ex 2.5 worked with disabling https only mode in firefox
+
+# Adding postgres db to our project
+- services:
+  redis:
+    image : redis
+  backend:
+    image : backend-project
+    ports:
+      - 8080:8080
+    environment:
+      - REQUEST_ORIGIN=http://localhost:5001
+      - REDIS_HOST=redis
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DATABASE=postgres
+    depends_on:
+      - db
+  frontend:
+    image : frontend-project
+    ports:
+      - 5001:5001
+  db:
+    image: postgres:18
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: postgres
+
+- 
