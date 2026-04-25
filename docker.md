@@ -177,4 +177,6 @@ networks:
     environment:
       POSTGRES_PASSWORD: postgres
 
-- 
+
+# CI/CD
+- With a CI/CD pipeline, development teams can make changes to code that are then automatically tested and pushed out for delivery and deployment. 
