@@ -180,3 +180,11 @@ networks:
 
 # CI/CD
 - With a CI/CD pipeline, development teams can make changes to code that are then automatically tested and pushed out for delivery and deployment. 
+
+# Add non root user for security
+-create the appuser
+RUN useradd -m appuser
+- change the owner of current dir to appuser
+RUN chown appuser .
+- now we can change the user
+USER appuser
