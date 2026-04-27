@@ -31,6 +31,14 @@ RUN npm run build
 # Use npm package called serve to serve the project in port 5001:
 RUN npm install -g serve
 
+# create app user
+RUN useradd -m appuser
+
+# change owner of the directory to app user
+RUN chown appuser .
+
+# now change the user
+USER appuser
+
 # serve: serve -s -l 5001 build
 CMD ["serve", "-s", "-l", "5001", "build"]
-
