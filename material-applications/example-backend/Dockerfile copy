@@ -7,24 +7,21 @@ EXPOSE 8080
 #convention
 WORKDIR /usr/src/app
 
-#copy all of the source code
-COPY . .
-
 # create app user
-RUN useradd -m appuser && chown appuser . && go build
+RUN useradd -m appuser
 
 # change owner of the directory to app user
-#RUN chown appuser .
+RUN chown appuser .
 
 # now change the user
 USER appuser
 
 #copy all of the source code
-#COPY . .
+COPY . .
 
 #Run go build. It will generate a binary named "server"
 #ENV REQUEST_ORIGIN=http://localhost:5001
-#RUN go build
+RUN go build
 
 #Execute the file e.g. ./server.
 CMD ["./server"]
