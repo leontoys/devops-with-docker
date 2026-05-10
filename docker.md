@@ -188,3 +188,18 @@ RUN useradd -m appuser
 RUN chown appuser .
 - now we can change the user
 USER appuser
+
+# Reducing the size
+- Use smaller base image
+- Use builder patter
+  - ie, use two FROM lines, the first FROM compiles
+  - the second FROM copies it and creates a runtime container
+
+- image sizes before
+liyon@liyon-MacBookAir:~/Documents/Github/devops-with-docker/material-applications/example-backend$ docker image ls -a
+                                                                                                                                                              i Info →   U  In Use
+IMAGE                     ID             DISK USAGE   CONTENT SIZE   EXTRA
+backend-project:latest    414268b203a3       1.07GB             0B        
+frontend-project:latest   d9d761589097        651MB             0B        
+liyon@liyon-MacBookAir:~/Documents/Github/devops-with-docker/material-applications/example-backend$ 
+
