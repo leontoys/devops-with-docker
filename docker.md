@@ -198,8 +198,9 @@ USER appuser
 - image sizes before
 liyon@liyon-MacBookAir:~/Documents/Github/devops-with-docker/material-applications/example-backend$ docker image ls -a
                                                                                                                                                               i Info →   U  In Use
+liyon@liyon-MacBookAir:~/Documents/Github/devops-with-docker/material-applications/example-frontend$ docker image ls -a
+                                                                                                                                                              i Info →   U  In Use
 IMAGE                     ID             DISK USAGE   CONTENT SIZE   EXTRA
-backend-project:latest    414268b203a3       1.07GB             0B        
-frontend-project:latest   d9d761589097        651MB             0B        
-liyon@liyon-MacBookAir:~/Documents/Github/devops-with-docker/material-applications/example-backend$ 
+backend-project:latest    a47a3a1b353b       1.07GB             0B        
+frontend-project:latest   e5e8b3d01395        605MB             0B  
 
